@@ -1,14 +1,12 @@
 package tests;
 
-import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.Test;
-
-import java.io.File;
 
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
 
 public class AutomationPracticeFormTests extends TestBase {
 
@@ -18,28 +16,30 @@ public class AutomationPracticeFormTests extends TestBase {
         $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
 
 
-        $("[id=firstName]").setValue("Ivan");
-        $("[id=lastName]").setValue("Ivanov");
-        $("[id=userEmail]").setValue("ivan@ivanov.com");
+        $("#firstName").setValue("Ivan");
+        $("#lastName").setValue("Ivanov");
+        $("#userEmail").setValue("ivan@ivanov.com");
         $("#genterWrapper").$(byText("Other")).click();
-        $("[id=userNumber]").setValue("1234567890");
-        $("[id=dateOfBirthInput]").click();
+        $("#userNumber").setValue("1234567890");
+        $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").selectOption("July");
         $(".react-datepicker__year-select").selectOption("2008");
         $(".react-datepicker__day--030:not(.react-datepicker__day--outside-month)").click();
-        $("[id=subjectsInput]").setValue("Math").pressEnter();
+        $("#subjectsInput").setValue("Math").pressEnter();
         $("#hobbiesWrapper").$(byText("Sports")).click();
         $("#uploadPicture").uploadFromClasspath("img/1.png");
-        $("[id=currentAddress]").setValue("true address");
-        $("[id=state]").click();
+        $("#currentAddress").setValue("true address");
+        $("#state").click();
         $("#stateCity-wrapper").$(byText("NCR")).click();
-        $("[id=city]").click();
+        $("#city").click();
         $("#stateCity-wrapper").$(byText("Delhi")).click();
         $("#submit").click();
 
         $(".modal-dialog").should(appear);
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
-        $(".table-responsive").shouldHave(text("Ivan Ivanov"), text("ivan@ivanov.com"), text("true address"));
+        $(".table-responsive").shouldHave(text("Ivan Ivanov"), text("ivan@ivanov.com"),
+                text("Other"), text("1234567890"), text("30 July,2008"), text("Maths"), text("Sports"), text("1.png"),
+                text("true address"), text("NCR Delhi"));
     }
 
 }
