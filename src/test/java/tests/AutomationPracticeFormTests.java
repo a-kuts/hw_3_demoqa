@@ -37,9 +37,16 @@ public class AutomationPracticeFormTests extends TestBase {
 
         $(".modal-dialog").should(appear);
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
-        $(".table-responsive").shouldHave(text("Ivan Ivanov"), text("ivan@ivanov.com"),
-                text("Other"), text("1234567890"), text("30 July,2008"), text("Maths"), text("Sports"), text("1.png"),
-                text("true address"), text("NCR Delhi"));
+        $(".table-responsive").shouldHave(text("Ivan Ivanov"));
+        $(".table-responsive").shouldHave(text("ivan@ivanov.com"));
+        $(".table-responsive").shouldHave(text("Other"));
+        $(".table-responsive").shouldHave(text("1234567890"));
+        $(".table-responsive").shouldHave(text("30 July,2008"));
+        $(".table-responsive").shouldHave(text("Maths"));
+        $(".table-responsive").shouldHave(text("Sports"));
+        $(".table-responsive").shouldHave(text("1.png"));
+        $(".table-responsive").shouldHave(text("true address"));
+        $(".table-responsive").shouldHave(text("NCR Delhi"));
     }
 
 }
