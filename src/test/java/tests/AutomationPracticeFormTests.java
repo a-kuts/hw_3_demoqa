@@ -7,6 +7,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
+import static tests.testdata.TestData.*;
 
 public class AutomationPracticeFormTests extends TestBase {
 
@@ -16,37 +17,37 @@ public class AutomationPracticeFormTests extends TestBase {
         $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
 
 
-        $("#firstName").setValue("Ivan");
-        $("#lastName").setValue("Ivanov");
-        $("#userEmail").setValue("ivan@ivanov.com");
-        $("#genterWrapper").$(byText("Other")).click();
-        $("#userNumber").setValue("1234567890");
+        $("#firstName").setValue(firstName);
+        $("#lastName").setValue(lastName);
+        $("#userEmail").setValue(userEmail);
+        $("#genterWrapper").$(byText(genterWrapper)).click();
+        $("#userNumber").setValue(userNumber);
         $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").selectOption("July");
         $(".react-datepicker__year-select").selectOption("2008");
         $(".react-datepicker__day--030:not(.react-datepicker__day--outside-month)").click();
-        $("#subjectsInput").setValue("Math").pressEnter();
-        $("#hobbiesWrapper").$(byText("Sports")).click();
+        $("#subjectsInput").setValue(subjectsInput).pressEnter();
+        $("#hobbiesWrapper").$(byText(hobbiesWrapper)).click();
         $("#uploadPicture").uploadFromClasspath("img/1.png");
-        $("#currentAddress").setValue("true address");
+        $("#currentAddress").setValue(currentAddress);
         $("#state").click();
-        $("#stateCity-wrapper").$(byText("NCR")).click();
+        $("#stateCity-wrapper").$(byText(state)).click();
         $("#city").click();
-        $("#stateCity-wrapper").$(byText("Delhi")).click();
+        $("#stateCity-wrapper").$(byText(city)).click();
         $("#submit").click();
 
         $(".modal-dialog").should(appear);
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
-        $(".table-responsive").shouldHave(text("Ivan Ivanov"));
-        $(".table-responsive").shouldHave(text("ivan@ivanov.com"));
-        $(".table-responsive").shouldHave(text("Other"));
-        $(".table-responsive").shouldHave(text("1234567890"));
+        $(".table-responsive").shouldHave(text(firstName + " " + lastName));
+        $(".table-responsive").shouldHave(text(userEmail));
+        $(".table-responsive").shouldHave(text(genterWrapper));
+        $(".table-responsive").shouldHave(text(userNumber));
         $(".table-responsive").shouldHave(text("30 July,2008"));
-        $(".table-responsive").shouldHave(text("Maths"));
-        $(".table-responsive").shouldHave(text("Sports"));
+        $(".table-responsive").shouldHave(text(subjectsInput));
+        $(".table-responsive").shouldHave(text(hobbiesWrapper));
         $(".table-responsive").shouldHave(text("1.png"));
-        $(".table-responsive").shouldHave(text("true address"));
-        $(".table-responsive").shouldHave(text("NCR Delhi"));
+        $(".table-responsive").shouldHave(text(currentAddress));
+        $(".table-responsive").shouldHave(text(state + " " + city));
     }
 
 }
