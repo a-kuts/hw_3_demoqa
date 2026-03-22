@@ -23,12 +23,12 @@ public class AutomationPracticeFormTests extends TestBase {
         $("#genterWrapper").$(byText(genterWrapper)).click();
         $("#userNumber").setValue(userNumber);
         $("#dateOfBirthInput").click();
-        $(".react-datepicker__month-select").selectOption("July");
-        $(".react-datepicker__year-select").selectOption("2008");
-        $(".react-datepicker__day--030:not(.react-datepicker__day--outside-month)").click();
+        $(".react-datepicker__month-select").selectOption(month);
+        $(".react-datepicker__year-select").selectOption(year);
+        $(".react-datepicker__day--0" + day + ":not(.react-datepicker__day--outside-month)").click();
         $("#subjectsInput").setValue(subjectsInput).pressEnter();
         $("#hobbiesWrapper").$(byText(hobbiesWrapper)).click();
-        $("#uploadPicture").uploadFromClasspath("img/1.png");
+        $("#uploadPicture").uploadFromClasspath(picturePath);
         $("#currentAddress").setValue(currentAddress);
         $("#state").click();
         $("#stateCity-wrapper").$(byText(state)).click();
@@ -42,10 +42,10 @@ public class AutomationPracticeFormTests extends TestBase {
         $(".table-responsive").shouldHave(text(userEmail));
         $(".table-responsive").shouldHave(text(genterWrapper));
         $(".table-responsive").shouldHave(text(userNumber));
-        $(".table-responsive").shouldHave(text("30 July,2008"));
+        $(".table-responsive").shouldHave(text(day + " " + month + "," + year));
         $(".table-responsive").shouldHave(text(subjectsInput));
         $(".table-responsive").shouldHave(text(hobbiesWrapper));
-        $(".table-responsive").shouldHave(text("1.png"));
+        $(".table-responsive").shouldHave(text(picture));
         $(".table-responsive").shouldHave(text(currentAddress));
         $(".table-responsive").shouldHave(text(state + " " + city));
     }
